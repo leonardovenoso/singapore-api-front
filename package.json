@@ -1,0 +1,46 @@
+{
+  "name": "singapore_api",
+  "version": "5.0.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/lab": "latest",
+    "@mui/material": "latest",
+    "@mui/styled-engine-sc": "latest",
+    "@mui/x-date-pickers": "^5.0.3",
+    "@rematch/core": "^2.2.0",
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@testing-library/user-event": "latest",
+    "moment": "^2.29.4",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-redux": "^8.0.4",
+    "react-scripts": "latest",
+    "redux": "^4.2.0",
+    "styled-components": "latest"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "test:coverage": "CI=true npm test -- --env=jsdom --coverage"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@craco/craco": "latest"
+  }
+}
