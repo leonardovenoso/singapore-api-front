@@ -7,6 +7,7 @@ const LocationsAutocomplete = ({ locations, isLocationsLoading }) => {
   return (
     <Grid item xs={12} md={12}>
       <Autocomplete
+        disabled={!locations || locations.length === 0}
         id='locations-autocomplete'
         data-testid='locations-autocomplete'
         sx={{width: '100%'}}
