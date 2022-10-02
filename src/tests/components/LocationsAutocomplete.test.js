@@ -1,3 +1,5 @@
+import { Provider } from 'react-redux';
+import store from '../../rematch/store';
 import { render, screen, within, fireEvent } from '@testing-library/react';
 import LocationsAutocomplete from '../../components/LocationsAutocomplete';
 import { LocationsData } from './locationsData';
@@ -5,16 +7,18 @@ import { LocationsData } from './locationsData';
 describe('LocationsAutocomplete component', () => {
   it('renders locations dropdown', async () => {
     render(
-      <LocationsAutocomplete locations={[]} isLocationsLoading={true} />
+      <Provider store={store}>
+        <LocationsAutocomplete locations={[]} isLocationsLoading={true} />
+      </Provider>
     );
     expect(screen.getByTestId('locations-autocomplete')).toBeInTheDocument();
   });
 
   it('selects a location from the list of locations', async () => {
    render(
-      <div data-testid='root'>
+      <Provider store={store}>
         <LocationsAutocomplete locations={LocationsData} isLocationsLoading={false} />
-      </div>
+      </Provider>
     );
   
     const autocomplete = screen.getByTestId('locations-autocomplete');
