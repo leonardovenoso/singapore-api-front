@@ -1,12 +1,19 @@
 import { useState } from 'react';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import TextField from '@mui/material/TextField';
+import { useDispatch } from 'react-redux';
 import { Grid } from '@mui/material';
 
 const Time = () => {
   const [time, setTime] = useState(null);
+  const dispatch = useDispatch();
+
   const handleChangeDate = (selectedTime) => {
     setTime(selectedTime);
+  };
+
+  const onAccept = (selectedTime) => {
+    dispatch.FrontPageModel.setTime(selectedTime.format('YYYY-MM-DDTHH:mm:SS'));
   };
 
   return (
@@ -17,7 +24,8 @@ const Time = () => {
         inputFormat='YYYY-MM-DD HH:mm'
         closeOnSelect={true}
         onChange={handleChangeDate}
-        renderInput={(params) => <TextField {...params} sx={{ width: '100%' }} data-testid='date-time-picker' />}
+        onAccept={onAccept}
+        renderInput={(params) => <TextField {...params} data-testid='date-time-picker' sx={{ width: '100%' }} />}
       />
     </Grid>
   )
