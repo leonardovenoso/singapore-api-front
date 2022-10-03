@@ -24,6 +24,13 @@ const Time = () => {
     }
   };
 
+  const handleOnBlur = (e) => {
+    const date = moment(moment(e.target.value).format('YYYY-MM-DDTHH:mm'), 'YYYY-MM-DDTHH:mm', true);
+    if (date.isValid()) {
+      onAccept(date);
+    }
+  };
+
   return (
     <Grid item xs={12} >
       <DateTimePicker
@@ -33,7 +40,7 @@ const Time = () => {
         closeOnSelect={true}
         onChange={handleChangeDate}
         onAccept={onAccept}
-        renderInput={(params) => <TextField onKeyDown={handleKeyDown} {...params} data-testid='date-time-picker' sx={{ width: '100%' }} />}
+        renderInput={(params) => <TextField onKeyDown={handleKeyDown} onBlur={handleOnBlur} {...params} data-testid='date-time-picker' sx={{ width: '100%' }} />}
       />
     </Grid>
   )
