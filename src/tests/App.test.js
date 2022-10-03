@@ -42,8 +42,11 @@ describe('App', () => {
       expect(locationsInput.value).toContain('Kallang, (1.29531332, 103.871146)'); 
     });
 
-    it('shows the weather', () => {
+    it('shows the location info', () => {
       expect(container.getByTestId('weather')).toBeInTheDocument();
+      expect(container.getByTestId('coordinates')).toBeInTheDocument();
+      expect(container.getByTestId('cameraId')).toBeInTheDocument();
+      expect(container.getByTestId('locationName')).toBeInTheDocument();
     });
   });
 });
