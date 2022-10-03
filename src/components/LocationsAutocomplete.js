@@ -11,6 +11,7 @@ const LocationsAutocomplete = ({ locations, isLocationsLoading }) => {
   };
   const time = useSelector(state => state.FrontPageModel.time);
   const [inputValue, setInputValue] = useState('');
+  const getLabel = (option) => `${option.locationName}, (${option.lat}, ${option.lon})`;
 
   useEffect(() => {
     setInputValue('');
@@ -27,6 +28,7 @@ const LocationsAutocomplete = ({ locations, isLocationsLoading }) => {
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
         getOptionLabel={(option) => `${option.locationName}, (${option.lat}, ${option.lon})`}
+        isOptionEqualToValue={(option, value) => getLabel(option) === getLabel(value)}
         options={locations}
         loading={isLocationsLoading}
         onChange={handleOnChange}
