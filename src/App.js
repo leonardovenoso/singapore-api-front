@@ -20,6 +20,7 @@ export default function App() {
   useEffect(() => {
     if (time) {
       dispatch.FrontPageModel.fetchLocationsAndWeather(time);
+      dispatch.FrontPageModel.setShowError(false);
     }
   }, [time]);
   const onClickCardImage = () => {
