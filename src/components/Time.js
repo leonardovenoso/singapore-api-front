@@ -25,6 +25,7 @@ const Time = () => {
         closeOnSelect={true}
         onChange={handleChangeDate}
         onAccept={onAccept}
+        maxDateTime={moment()}
         renderInput={(params) => <TextField onKeyDown={handleKeyDown} onBlur={handleOnBlur} {...params} data-testid='date-time-picker' sx={{ width: '100%' }} />}
       />
     </Grid>
