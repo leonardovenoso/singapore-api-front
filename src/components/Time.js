@@ -8,28 +8,13 @@ import moment from 'moment';
 const Time = () => {
   const [time, setTime] = useState(null);
   const dispatch = useDispatch();
-
-  const handleChangeDate = (selectedTime) => {
-    setTime(selectedTime);
-  };
-
+  const handleChangeDate = (selectedTime) => setTime(selectedTime);
   const onAccept = (selectedTime) => {
-    dispatch.FrontPageModel.setTime(selectedTime.format('YYYY-MM-DDTHH:mm:SS'));
+    const date = moment(moment(selectedTime).format('YYYY-MM-DDTHH:mm'), 'YYYY-MM-DDTHH:mm', true);
+    date.isValid() && dispatch.FrontPageModel.setTime(date.format('YYYY-MM-DDTHH:mm:SS'));
   };
-
-  const handleKeyDown = (e) => {
-    const date = moment(moment(e.target.value).format('YYYY-MM-DDTHH:mm'), 'YYYY-MM-DDTHH:mm', true);    
-    if (e.key === 'Enter' && date.isValid()) {
-      onAccept(date);
-    }
-  };
-
-  const handleOnBlur = (e) => {
-    const date = moment(moment(e.target.value).format('YYYY-MM-DDTHH:mm'), 'YYYY-MM-DDTHH:mm', true);
-    if (date.isValid()) {
-      onAccept(date);
-    }
-  };
+  const handleKeyDown = (e) => e.key === 'Enter' &&  onAccept(e.target.value);
+  const handleOnBlur = (e) => onAccept(e.target.value);
 
   return (
     <Grid item xs={12} >
