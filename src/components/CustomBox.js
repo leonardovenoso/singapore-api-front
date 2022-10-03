@@ -6,8 +6,8 @@ const CustomBox = styled(Box)`
   border: 1px solid #fff8f8;
   display: flex;
   align-items: center;
-  justify-content: left;
-  padding-left: 10px;
+  justify-content: center;
+  padding-left: ${props => (props.pl || '10px')};
   padding-right: 10px;
 `;
 

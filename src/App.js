@@ -5,11 +5,13 @@ import { Grid } from '@mui/material';
 import CustomBox from './components/CustomBox';
 import Time from './components/Time';
 import LocationsAutocomplete from './components/LocationsAutocomplete';
+import { getTheWeatherIcon } from './utils/icons';
 
 export default function App() {
   const locations = useSelector(state => state.FrontPageModel.locations);
   const isLocationsLoading = useSelector(state => state.FrontPageModel.isLocationsLoading);
   const time = useSelector(state => state.FrontPageModel.time);
+  const selectedLocation = useSelector(state => state.FrontPageModel.selectedLocation);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,9 +33,12 @@ export default function App() {
         </CustomBox>
       </Grid>
       <Grid item xs={12} md={4}>
-        <CustomBox>
-          <p>Weather</p>
-        </CustomBox>
+        {selectedLocation?.forecast &&
+          <CustomBox pl={'1px'}>
+            <p data-testid='weather'>Weather&nbsp;</p>
+            <p><img src={getTheWeatherIcon(selectedLocation?.forecast)} /></p>
+          </CustomBox>
+        }
       </Grid>
     </Grid>
   );

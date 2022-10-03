@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import store from '../rematch/store';
-import { render, fireEvent, within, waitFor } from '@testing-library/react';
+import { render, fireEvent, within, waitFor } from '@testing-library/react/pure';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import App from '../App';
@@ -9,12 +9,12 @@ import { trafficItems } from './trafficData';
 
 describe('App', () => {
   describe('when change time', () => {
+    let container;
     let locationsInput;
 
     beforeAll(async () => {
       jest.spyOn(apiTraffic, 'fetchTraffic').mockResolvedValue(trafficItems);
-
-      const container = render(
+      container = render(
         <Provider store={store}>
           <LocalizationProvider dateAdapter={AdapterMoment}>
             <App />
@@ -40,6 +40,10 @@ describe('App', () => {
 
     it('filled location list', async () => {
       expect(locationsInput.value).toContain('Kallang, (1.29531332, 103.871146)'); 
+    });
+
+    it('shows the weather', () => {
+      expect(container.getByTestId('weather')).toBeInTheDocument();
     });
   });
 });
