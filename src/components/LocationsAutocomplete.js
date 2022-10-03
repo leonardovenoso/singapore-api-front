@@ -5,13 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 const LocationsAutocomplete = ({ locations, isLocationsLoading }) => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
+  const getLabel = (option) => option ? `${option.locationName}, (${option.lat}, ${option.lon})` : '';
+
   const handleOnChange = (e, loc) => {
-    loc && dispatch.FrontPageModel.setSelectedLocation(loc);
-    setInputValue(`${loc.locationName}, (${loc.lat}, ${loc.lon})`);
+    dispatch.FrontPageModel.setSelectedLocation(loc);
+    setInputValue(getLabel(loc));
   };
   const time = useSelector(state => state.FrontPageModel.time);
   const [inputValue, setInputValue] = useState('');
-  const getLabel = (option) => `${option.locationName}, (${option.lat}, ${option.lon})`;
 
   useEffect(() => {
     setInputValue('');
