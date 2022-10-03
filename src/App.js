@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Grid, AppBar, Toolbar, Typography } from '@mui/material';
+import { Grid, AppBar, Toolbar, Typography, Alert } from '@mui/material';
 import CustomBox from './components/CustomBox';
 import Time from './components/Time';
 import LocationsAutocomplete from './components/LocationsAutocomplete';
@@ -15,6 +15,7 @@ export default function App() {
   const selectedLocation = useSelector(state => state.FrontPageModel.selectedLocation);
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const showError = useSelector(state => state.FrontPageModel.showError);
 
   useEffect(() => {
     if (time) {
@@ -28,6 +29,9 @@ export default function App() {
 
   return (
     <div>
+      {showError &&
+        <Alert severity="error">There was an error, please try later!</Alert>
+      }
       <AppBar position="static">
         <Toolbar variant="dense">
           <Typography variant="h6" color="inherit" component="div">SG API</Typography>

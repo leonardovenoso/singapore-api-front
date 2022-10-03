@@ -8,6 +8,7 @@ export const FrontPageModel = {
     locations: [],
     isLocationsLoading: false,
     selectedLocation: undefined,
+    showError: false,
   },
   reducers: {
     setTime(state, time) {
@@ -22,15 +23,23 @@ export const FrontPageModel = {
     setSelectedLocation(state, selectedLocation) {
       return {...state, selectedLocation};
     },
+    setShowError(state, showError) {
+      return {...state, showError};
+    }
   },
   effects: {
     async fetchLocationsAndWeather(time) {
-      this.setIsLocationsLoading(true);      
-      const all = await Promise.all([fetchTraffic(time), fetchWeather(time)]);
-      const locations = all.shift();
-      const weather = all.shift();
-      this.setLocations(getLocationInformation(locations.items[0].cameras, weather));
-      this.setIsLocationsLoading(false);
+      try {
+        this.setIsLocationsLoading(true);      
+        const all = await Promise.all([fetchTraffic(time), fetchWeather(time)]);
+        const locations = all.shift();
+        const weather = all.shift();
+        this.setLocations(getLocationInformation(locations.items[0].cameras, weather));
+        this.setIsLocationsLoading(false);
+      } catch (e) {
+        this.setShowError(true);
+        this.setIsLocationsLoading(false);
+      }
     },
   },
 };
