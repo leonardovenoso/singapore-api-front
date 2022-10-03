@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import { Box } from '@mui/material';
 
 const CustomBox = styled(Box)`
-  min-height: ${props => (props.minHeight || '100px')};;
-  border: 1px solid #fff8f8;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
