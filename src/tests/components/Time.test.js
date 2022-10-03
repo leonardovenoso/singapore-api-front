@@ -7,7 +7,7 @@ import Time from '../../components/Time';
 import { act } from 'react-dom/test-utils';
 
 describe('Time component', () => {
-  xit('renders the date and time select', async () => {
+  it('renders the date and time select', async () => {
     render(
       <Provider store={store}>
         <LocalizationProvider dateAdapter={AdapterMoment}>
@@ -18,7 +18,7 @@ describe('Time component', () => {
     expect(screen.getByTestId('date-time-picker')).toBeInTheDocument();
   });
 
-  xit('selects a date and time', async () => {
+  it('selects a date and time', async () => {
     const container = render(
       <Provider store={store}>
         <LocalizationProvider dateAdapter={AdapterMoment}>
