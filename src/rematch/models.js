@@ -7,6 +7,7 @@ export const FrontPageModel = {
     time: '',
     locations: [],
     isLocationsLoading: false,
+    selectedLocation: undefined,
   },
   reducers: {
     setTime(state, time) {
@@ -17,6 +18,9 @@ export const FrontPageModel = {
     },
     setIsLocationsLoading(state, isLocationsLoading) {
       return {...state, isLocationsLoading};
+    },
+    setSelectedLocation(state, selectedLocation) {
+      return {...state, selectedLocation};
     },
   },
   effects: {

@@ -1,8 +1,11 @@
 import { Fragment, useState } from 'react';
 import { Autocomplete, TextField, Grid, CircularProgress } from '@mui/material';
+import { useDispatch } from 'react-redux';
 
 const LocationsAutocomplete = ({ locations, isLocationsLoading }) => {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  const handleOnChange = (e, loc) => loc && dispatch.FrontPageModel.setSelectedLocation(loc);
 
   return (
     <Grid item xs={12} md={12}>
@@ -17,6 +20,7 @@ const LocationsAutocomplete = ({ locations, isLocationsLoading }) => {
         getOptionLabel={(option) => `${option.locationName}, (${option.lat}, ${option.lon})`}
         options={locations}
         loading={isLocationsLoading}
+        onChange={handleOnChange}
         renderInput={(params) => (
           <TextField
             {...params}

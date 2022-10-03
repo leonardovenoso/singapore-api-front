@@ -19,6 +19,7 @@ const getLocationName = (location, weathers) => {
     return {
       distanceInMeters: getDistanceInMeters(lat1, lon1, lat2, lon2),
       locationName: weather.name,
+      forecast: weather.forecast,
     };
   });
 
@@ -34,7 +35,7 @@ const getForecastByLocationName = (locationName, forecasts) => (
 
 const getLocationInformation = (locations, weathers) => (locations.map(location => {
   const locationName = getLocationName(location, weathers.area_metadata);
-  const forecast = getForecastByLocationName(locationName, weathers.items[0].forecasts);
+  const { forecast } = getForecastByLocationName(locationName, weathers.items[0].forecasts);
   return {
     lat: location.location.latitude,
     lon: location.location.longitude,
@@ -42,7 +43,7 @@ const getLocationInformation = (locations, weathers) => (locations.map(location 
     cameraId: location.camera_id,
     forecast,
     locationName,
-  }
+  };
 }));
 
 export default getLocationInformation;
