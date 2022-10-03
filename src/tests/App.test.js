@@ -48,5 +48,12 @@ describe('App', () => {
       expect(container.getByTestId('cameraId')).toBeInTheDocument();
       expect(container.getByTestId('locationName')).toBeInTheDocument();
     });
+
+    it('opens the image modal', () => {
+      container.getByTestId('locationImage').click();
+      waitFor(() => {
+        expect(container.getByTestId('imageModal')).toBeInTheDocument();
+      });
+    });
   });
 });
