@@ -11,7 +11,7 @@ export const FrontPageModel = {
   },
   reducers: {
     setTime(state, time) {
-      return {...state, time};
+      return {...state, time, selectedLocation: {}};
     },
     setLocations(state, locations) {
       return {...state, locations};
