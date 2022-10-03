@@ -1,1 +1,1 @@
-export const getTheWeatherIcon = (weatherName = '') => `http://www.weather.gov.sg/wp-content/themes/wiptheme/assets/img/icon-${weatherName.toLowerCase().replace(/[^\w\s]/gi, '').split(' ').join('-')}-small.png`;
+export const getTheWeatherIcon = (weatherName) => `http://www.weather.gov.sg/wp-content/themes/wiptheme/assets/img/icon-${weatherName.toLowerCase().replace(/[^\w\s]/gi, '').split(' ').join('-')}-small.png`;
