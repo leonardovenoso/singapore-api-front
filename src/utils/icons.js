@@ -1,1 +1,33 @@
-export const getTheWeatherIcon = (weatherName) => `http://www.weather.gov.sg/wp-content/themes/wiptheme/assets/img/icon-${weatherName.toLowerCase().replace(/[^\w\s]/gi, '').split(' ').join('-')}-small.png`;
+const weatherNames = {
+  'fair (day)': 'fair-day',
+  'fair (night)': 'fair-night',
+  'fair & warm': 'fair-warm',
+  'partly cloudy (day)': 'partly-cloudy-night',
+  'partly cloudy (night)': 'partly-cloudy-night',
+  'cloudy': 'cloudy',
+  'hazy': 'hazy',
+  'slightly hazy': 'slightly-hazy',
+  'windy': 'windy',
+  'mist': 'mist',
+  'light rain': 'light-rain',
+  'moderate rain': 'moderate-rain',
+  'heavy rain': 'heavy-rain',
+  'passing showers': 'passing-shower',
+  'passing shower': 'passing-shower',
+  'light showers': 'light-shower',
+  'light shower': 'light-shower',
+  'showers': 'shower',
+  'shower': 'shower',
+  'heavy showers': 'heavy-showers',
+  'heavy shower': 'heavy-showers',
+  'thundery showers': 'thundery-showers',
+  'thundery shower': 'thundery-showers',
+  'heavy thundery showers': 'heavy-thundery-showers',
+  'heavy thundery shower': 'heavy-thundery-showers',
+  'heavy thundery showers with gusty winds': 'heavy-thundery-showers-with-gusty-winds-small',
+  'heavy thundery shower with gusty wind': 'heavy-thundery-showers-with-gusty-winds-small',
+  'heavy thundery shower with gusty winds': 'heavy-thundery-showers-with-gusty-winds-small',
+};
+
+const iconSmURL = (name) => `http://www.weather.gov.sg/wp-content/themes/wiptheme/assets/img/icon-${name}-small.png`;
+export const getTheWeatherIcon = (weatherName) => iconSmURL(weatherNames[weatherName.toLowerCase()]);
