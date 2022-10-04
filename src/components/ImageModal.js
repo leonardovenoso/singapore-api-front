@@ -36,7 +36,9 @@ const ImageModal = ({ image, isModalOpen, handleCloseModal }) => (
     data-testid='imageModal'
   >
     <Box sx={style}>
-      <CancelIcon style={closeImg} onClick={handleCloseModal} />
+      <Box data-testid='closeModal' onClick={handleCloseModal}>
+        <CancelIcon style={closeImg} />
+      </Box>
       <img src={image} style={imageStyle}/>
     </Box>
   </Modal>

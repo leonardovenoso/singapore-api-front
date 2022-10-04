@@ -41,6 +41,10 @@ class AppPO  {
     this.container.getByTestId('locationImage').click();
   };
 
+  closeModal() {
+    this.container.getByTestId('closeModal').click();
+  };
+
   getByTestId(id) {
     return this.container.getByTestId(id);
   };

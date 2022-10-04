@@ -31,7 +31,7 @@ export default function App() {
   return (
     <div>
       {showError &&
-        <Alert severity="error">There was an error, please try later!</Alert>
+        <Alert severity="error" data-testid='alertError'>There was an error, please try later!</Alert>
       }
       <AppBar position="static">
         <Toolbar variant="dense">
