@@ -8,13 +8,13 @@ import moment from 'moment';
 const Time = () => {
   const [time, setTime] = useState(null);
   const dispatch = useDispatch();
-  const handleChangeDate = (selectedTime) => setTime(selectedTime);
+  const handleChangeDate = () => {};
   const onAccept = (selectedTime) => {
     const date = moment(moment(selectedTime).format('YYYY-MM-DDTHH:mm'), 'YYYY-MM-DDTHH:mm', true);
     date.isValid() && dispatch.FrontPageModel.setTime(date.format('YYYY-MM-DDTHH:mm:SS'));
+    setTime(selectedTime);
   };
   const handleKeyDown = (e) => e.key === 'Enter' &&  onAccept(e.target.value);
-  const handleOnBlur = (e) => onAccept(e.target.value);
 
   return (
     <Grid item xs={12} >
@@ -26,7 +26,7 @@ const Time = () => {
         onChange={handleChangeDate}
         onAccept={onAccept}
         maxDateTime={moment()}
-        renderInput={(params) => <TextField onKeyDown={handleKeyDown} onBlur={handleOnBlur} {...params} data-testid='date-time-picker' sx={{ width: '100%' }} />}
+        renderInput={(params) => <TextField onKeyDown={handleKeyDown} {...params} data-testid='date-time-picker' sx={{ width: '100%' }} />}
       />
     </Grid>
   )
