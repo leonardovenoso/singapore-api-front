@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { render, fireEvent, within, waitFor, cleanup} from '@testing-library/react/pure';
+import { render, fireEvent, within, waitFor } from '@testing-library/react/pure';
 import App from '../../App';
 
 class AppPO  {
