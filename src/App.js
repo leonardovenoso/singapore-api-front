@@ -16,6 +16,7 @@ export default function App() {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showError = useSelector(state => state.FrontPageModel.showError);
+  const [openAlert, setOpenAlert] = useState(false);
 
   useEffect(() => {
     if (time) {
@@ -23,15 +24,19 @@ export default function App() {
       dispatch.FrontPageModel.setShowError(false);
     }
   }, [time]);
-  const onClickCardImage = () => {
-    setIsModalOpen(true);
-  }
+
+  useEffect(() => {
+    showError && setOpenAlert(true);
+  }, [showError]);
+
+  const onClickCardImage = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
+  const closeAlert = () => setOpenAlert(false);
 
   return (
     <div>
-      {showError &&
-        <Alert severity="error" data-testid='alertError'>There was an error, please try later!</Alert>
+      {openAlert &&
+        <Alert severity="error" data-testid='alertError' onClose={closeAlert}>There was an error, please try later!</Alert>
       }
       <AppBar position="static">
         <Toolbar variant="dense">

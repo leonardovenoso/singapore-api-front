@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { render, fireEvent, within, waitFor } from '@testing-library/react/pure';
+import { render, fireEvent, within, waitFor, cleanup} from '@testing-library/react/pure';
 import App from '../../App';
 
 class AppPO  {
@@ -21,7 +21,7 @@ class AppPO  {
   )};
   
   selectTime(time) {
-    const input = this.container.getByRole('textbox');
+    const input = within(this.container.getAllByTestId('date-time-picker')[0]).getByRole('textbox');
     fireEvent.change(input, {target: {value: time}});
     fireEvent.keyDown(input, { key: 'Enter' });
   };

@@ -6,13 +6,16 @@ import { trafficItems } from './trafficData';
 import AppPO from './pageObjects/AppPO';
 
 describe('App', () => {
-  describe('when change time', () => {
-    let appPO;
+  let appPO;
 
+  beforeAll(async () => {
+    jest.spyOn(apiTraffic, 'fetchTraffic').mockResolvedValue(trafficItems);
+    appPO = new AppPO({store, dateAdapter: AdapterMoment});
+    appPO.renderApp();
+  }); 
+
+  describe('when change time', () => {
     beforeAll(async () => {
-      jest.spyOn(apiTraffic, 'fetchTraffic').mockResolvedValue(trafficItems);
-      appPO = new AppPO({store, dateAdapter: AdapterMoment});
-      appPO.renderApp();
       appPO.selectTime('2022-10-01 02:00');
       await appPO.selectLocation('Kallang');
     });
@@ -55,14 +58,13 @@ describe('App', () => {
   });
 
   describe('when fetch data from API fails', () => {
-    let appPO;
     afterAll(() => jest.resetAllMocks());
   
     it('shows an error', async () => {
-      jest.spyOn(apiTraffic, 'fetchTraffic').mockResolvedValue(trafficItems);
-      appPO = new AppPO({store, dateAdapter: AdapterMoment});
-      appPO.renderApp();
-      waitFor(() => {
+      jest.spyOn(apiTraffic, 'fetchTraffic').mockImplementation(() => {throw Error()});
+      appPO.selectTime('2022-10-01 02:00');
+
+      await waitFor(() => {
         expect(appPO.getByTestId('alertError')).toBeInTheDocument();
       });
     });
