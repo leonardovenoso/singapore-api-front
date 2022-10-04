@@ -11,6 +11,9 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   width: '70vw',
+  '@media (min-width: 1200px)': {
+    width: '50vw',
+  },
 };
 const closeImg = {
   cursor:'pointer',
