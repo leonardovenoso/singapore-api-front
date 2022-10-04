@@ -26,7 +26,7 @@ export default function App() {
   }, [time]);
 
   useEffect(() => {
-    showError && setOpenAlert(true);
+    showError && setOpenAlert(showError);
   }, [showError]);
 
   const onClickCardImage = () => setIsModalOpen(true);
