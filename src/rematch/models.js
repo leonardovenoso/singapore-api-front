@@ -25,7 +25,10 @@ export const FrontPageModel = {
     },
     setShowError(state, showError) {
       return {...state, showError};
-    }
+    },
+    setPayload(state, payload) {
+      return {...state, ...payload};
+    },
   },
   effects: {
     async fetchLocationsAndWeather(time) {
@@ -37,8 +40,7 @@ export const FrontPageModel = {
         this.setLocations(getLocationInformation(locations.items[0].cameras, weather));
         this.setIsLocationsLoading(false);
       } catch (e) {
-        this.setShowError(true);
-        this.setIsLocationsLoading(false);
+        this.setPayload({showError: true, isLocationsLoading: false, locations: [], selectedLocation: {}});
       }
     },
   },
