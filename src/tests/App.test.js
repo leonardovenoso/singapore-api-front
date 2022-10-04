@@ -7,20 +7,19 @@ import AppPO from './pageObjects/AppPO';
 
 describe('App', () => {
   let appPO;
+  let fetchTrafficSpy = jest.spyOn(apiTraffic, 'fetchTraffic');
 
-  beforeAll(async () => {
-    jest.spyOn(apiTraffic, 'fetchTraffic').mockResolvedValue(trafficItems);
+  beforeAll(() => {
     appPO = new AppPO({store, dateAdapter: AdapterMoment});
     appPO.renderApp();
   }); 
 
   describe('when change time', () => {
     beforeAll(async () => {
+      fetchTrafficSpy.mockResolvedValue(trafficItems);
       appPO.selectTime('2022-10-01 02:00');
       await appPO.selectLocation('Kallang');
     });
-
-    afterAll(() => jest.resetAllMocks());
 
     it('filled location list', async () => {
       expect(appPO.getLocationsInputValue()).toContain('Kallang, (1.29531332, 103.871146)'); 
@@ -58,11 +57,15 @@ describe('App', () => {
   });
 
   describe('when fetch data from API fails', () => {
-    afterAll(() => jest.resetAllMocks());
-  
+    beforeAll(() => {
+      fetchTrafficSpy.mockClear();
+      fetchTrafficSpy.mockRejectedValue(new Error(''));
+    });
+
     it('shows an error', async () => {
-      jest.spyOn(apiTraffic, 'fetchTraffic').mockImplementation(() => {throw Error()});
-      appPO.selectTime('2022-10-01 02:00');
+      await waitFor(() => {
+        appPO.selectTime('2022-10-01 02:10');
+      });
 
       await waitFor(() => {
         expect(appPO.getByTestId('alertError')).toBeInTheDocument();
