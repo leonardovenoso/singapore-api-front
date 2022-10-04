@@ -1,40 +1,25 @@
-# Create React App example with styled-components
+# Problem to solve
+Allow the user to choose a date and time, then show a list of locations with traffic cam photos for the specified date and time.
+APIs:
+* Traffic Images: https://data.gov.sg/dataset/traffic-images
+* Weather Forecast: https://data.gov.sg/dataset/weather-forecast
 
-## How to use
+# Assumptions
+* The friendly coordinate name is obtained by calculating the shortest distance from the traffic location point to the weather information areas. The algorithm used is haversine.
+* The above algorithm does not consider hills, roads, traffic lights, etc.
+* All the weather legends are from: https://www.weather.gov.sg/weather-forecast-2hrnowcast-2/. The kind of weather name can be converted into icon URLs.
 
-Download the example [or clone the repo](https://github.com/mui/material-ui):
+# Requirements
+OS: Mac 12.5.1
+NodeJS v14.18.2
 
-<!-- #default-branch-switch -->
-
-```sh
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/create-react-app-with-styled-components
-cd create-react-app-with-styled-components
-```
-
-Install it and run:
-
-```sh
+# Run and install
 npm install
 npm start
-```
 
-## CodeSandbox
+# Run unit tests
+npm run test
 
-<!-- #default-branch-switch -->
+# Run coverage
+npm run test:coverage
 
-Note that CodeSandbox is not supporting react-app-rewired, yet you can [still see the code](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/create-react-app-with-styled-components).
-
-The following link leverages this demo: https://mui.com/guides/interoperability/#change-the-default-styled-engine with Parcel's alias feature within the `package.json`
-
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-interoperability-w9z9d)
-
-## The idea behind the example
-
-This example demonstrates how you can setup [Create React App](https://github.com/facebookincubator/create-react-app) with [styled-components](https://styled-components.com/) as a style engine for your application.
-
-## What's next?
-
-<!-- #default-branch-switch -->
-
-You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/material-ui/getting-started/templates/) section.
