@@ -29,6 +29,7 @@ const closeImg = {
 };
 const imageStyle = {
   width: '100%',
+  marginBottom: '-6px',
 };
 
 const ImageModal = ({ image, isModalOpen, handleCloseModal }) => (
