@@ -17,6 +17,7 @@
     "moment": "^2.29.4",
     "react": "latest",
     "react-dom": "latest",
+    "react-lazy-load-image-component": "^1.5.5",
     "react-redux": "^8.0.4",
     "react-scripts": "latest",
     "redux": "^4.2.0",

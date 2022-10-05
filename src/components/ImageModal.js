@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import CancelIcon from '@mui/icons-material/Cancel';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const style = {
   position: 'absolute',
@@ -42,7 +43,7 @@ const ImageModal = ({ image, isModalOpen, handleCloseModal }) => (
       <Box data-testid='closeModal' onClick={handleCloseModal}>
         <CancelIcon style={closeImg} />
       </Box>
-      <img src={image} style={imageStyle}/>
+      <LazyLoadImage src={image} style={imageStyle}/>
     </Box>
   </Modal>
 );
